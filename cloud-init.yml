@@ -40,6 +40,8 @@ runcmd:
   - su -c 'wget https://raw.githubusercontent.com/oregonpillow/powerlevel10k/master/girl.jpg -O ~/.neofetch_image.jpg' - vader
   - su -c 'echo "\n[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> ~/.zshrc' - vader
   - su -c 'echo "\nneofetch --iterm2 --source ~/.neofetch_image.jpg" >> ~/.zshrc' - vader
+  - su -c 'echo "\nLC_CTYPE=en_US.UTF-8" >> ~/.zshrc' - vader
+  - su -c 'echo "LC_ALL=en_US.UTF-8" >> ~/.zshrc' - vader
   - ufw allow OpenSSH
   - ufw enable
   - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
