@@ -10,6 +10,8 @@ To use, add following to user-data file:
 https://raw.githubusercontent.com/oregonpillow/powerlevel10k/master/cloud-init.yml
 ```
 
+## Requirements
+- [iTerm2](https://iterm2.com/) (needed for image rendering)
 
 ### Tested
 
