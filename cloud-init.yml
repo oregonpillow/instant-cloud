@@ -10,13 +10,19 @@ users:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBxv+NZ/P0pw3inXpqffaV5GB3FShqzZ8ovP6nHJ2I4 m1
 packages:
   - ufw
+  - curl 
+  - git 
+  - zsh 
+  - docker-compose 
+  - restic 
+  - make 
+  - imagemagick
 package_update: true
 package_upgrade: true
 runcmd:
   - su -c 'echo "cloud-init start - $(date)" >> ~/cloud-init.txt' - vader
   - curl -fsSL https://get.docker.com | sh
   - usermod -aG docker vader
-  - apt-get update && apt-get install -y curl git zsh docker-compose restic make imagemagick
   - restic self-update
   - su -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended' - vader
   - su -c 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k' - vader
