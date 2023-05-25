@@ -27,7 +27,7 @@ runcmd:
   - su -c 'git clone https://github.com/dylanaraps/neofetch ~/neofetch' - vader
   - su -c 'cd ~/neofetch && sudo make install && rm -rf ~/neofetch' - vader
   - su -c 'wget https://raw.githubusercontent.com/oregonpillow/powerlevel10k/master/.p10k.zsh -O ~/.p10k.zsh' - vader 
-  - su -c 'wget https://i.pinimg.com/564x/a1/59/5a/a1595ac7551ca009085e7c81b7958f9b.jpg -O ~/.neofetch_image.jpg' - vader
+  - su -c 'wget https://raw.githubusercontent.com/oregonpillow/powerlevel10k/master/girl.jpg -O ~/.neofetch_image.jpg' - vader
   - su -c 'echo "\n[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> ~/.zshrc' - vader
   - su -c 'echo "\nneofetch --iterm2 --source ~/.neofetch_image.jpg" >> ~/.zshrc' - vader
   - ufw allow OpenSSH
