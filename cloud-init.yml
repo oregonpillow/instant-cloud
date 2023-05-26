@@ -29,7 +29,7 @@ runcmd:
   - restic self-update
   # install mosh
   - apt-get install -y automake libtool g++ protobuf-compiler libprotobuf-dev libboost-dev libutempter-dev libncurses5-dev zlib1g-dev libio-pty-perl libssl-dev pkg-config
-  - git clone https://github.com/keithw/mosh.git ~/mosh && cd ~/mosh && ./autogen.sh && ./configure && make && make install && rm -rf ~/mosh
+  - git clone https://github.com/keithw/mosh.git ~/mosh && cd ~/mosh && ./autogen.sh && ./configure && make && PREFIX=/usr/local make install && rm -rf ~/mosh
   # install btop
   - apt-get install -y coreutils sed build-essential gcc-10 g++-10
   - git clone --recursive https://github.com/aristocratos/btop.git ~/btop && cd ~/btop && make && make install && rm -rf ~/btop
