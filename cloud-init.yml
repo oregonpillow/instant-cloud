@@ -29,8 +29,8 @@ runcmd:
   - git clone https://github.com/keithw/mosh.git && cd mosh && ./autogen.sh && ./configure && make && make install
   - rm -rf mosh
   - su -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended' - vader
-  - su -c 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k' - vader
-  - su -c 'echo "source $ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc' - vader
+  - su -c 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k' - vader
+  - su -c 'echo "source $HOME/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc' - vader
   - su -c "sed -i 's/ZSH_THEME\=.*/ZSH_THEME=\"powerlevel10k\/powerlevel10k\"/' ~/.zshrc" - vader
   - su -c 'sudo chsh -s $(which zsh) $(whoami)' - vader
   - su -c 'touch ~/.hushlogin' - vader
