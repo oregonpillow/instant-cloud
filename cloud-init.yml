@@ -25,9 +25,9 @@ runcmd:
   - curl -fsSL https://get.docker.com | sh
   - usermod -aG docker vader
   - restic self-update
-  #- apt-get install -y automake libtool g++ protobuf-compiler libprotobuf-dev libboost-dev libutempter-dev libncurses5-dev zlib1g-dev libio-pty-perl libssl-dev pkg-config
-  #- git clone https://github.com/keithw/mosh.git && cd mosh && ./autogen.sh && ./configure && make && make install
-  #- rm -rf mosh
+  - apt-get install -y automake libtool g++ protobuf-compiler libprotobuf-dev libboost-dev libutempter-dev libncurses5-dev zlib1g-dev libio-pty-perl libssl-dev pkg-config
+  - git clone https://github.com/keithw/mosh.git && cd mosh && ./autogen.sh && ./configure && make && make install
+  - rm -rf mosh
   - su -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended' - vader
   - su -c 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k' - vader
   - su -c 'echo "source $HOME/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc' - vader
@@ -46,7 +46,7 @@ runcmd:
   - sed -i -E 's/#?PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
   - sed -i -E 's/#?Port 22/Port 14999/' /etc/ssh/sshd_config
   - ufw allow 14999/tcp
-  #- ufw allow 60000/udp
+  - ufw allow 60000/udp
   - ufw enable
   - systemctl restart sshd
   - su -c 'echo "cloud-init complete - $(date)" >> ~/cloud-init.txt' - vader
