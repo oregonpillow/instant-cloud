@@ -3,7 +3,7 @@
 ![screenshot](./screenshot.png)
 
 
-To use, add following to user-data file:
+To use, add following to cloudinit user-data file:
 
 ```yaml
 #include
@@ -12,7 +12,11 @@ https://raw.githubusercontent.com/oregonpillow/powerlevel10k/master/cloud-init.y
 
 ## Requirements
 - [iTerm2](https://iterm2.com/) (needed for image rendering)
-- .zshrc on client should include (for mosh to work):
+  ```
+  If image renders too small in iTerm2, try disabling retina resolution rendering:
+  iTerm2 settings > Advanced > search 'show inline images at Retina resolution' --> set to 'no'
+  ```
+- .zshrc on client should include defined locals (for mosh to work):
   ```bash
   export LC_ALL=en_US.UTF-8
   export LANG=en_US.UTF-8
