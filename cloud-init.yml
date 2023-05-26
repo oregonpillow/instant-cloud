@@ -32,7 +32,7 @@ runcmd:
   - git clone https://github.com/keithw/mosh.git ~/mosh && cd ~/mosh && ./autogen.sh && ./configure && make && make install && rm -rf ~/mosh
   # install btop
   - apt-get install -y coreutils sed build-essential gcc-10 g++-10
-  - git clone --recursive https://github.com/aristocratos/btop.git ~/btop && cd ~/btop && make && PREFIX=/usr/local/bin make install && rm -rf ~/btop
+  - git clone --recursive https://github.com/aristocratos/btop.git ~/btop && cd ~/btop && make && make install && rm -rf ~/btop
   # install ohmyzsh
   - su -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended' - vader
   # install powerlevel10k
