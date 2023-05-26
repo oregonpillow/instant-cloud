@@ -22,18 +22,26 @@ package_update: true
 package_upgrade: true
 runcmd:
   - su -c 'echo "cloud-init start - $(date)" >> ~/cloud-init.txt' - vader
+  # install docker
   - curl -fsSL https://get.docker.com | sh
   - usermod -aG docker vader
+  # update restic
   - restic self-update
+  # install mosh
   - apt-get install -y automake libtool g++ protobuf-compiler libprotobuf-dev libboost-dev libutempter-dev libncurses5-dev zlib1g-dev libio-pty-perl libssl-dev pkg-config
-  - git clone https://github.com/keithw/mosh.git && cd mosh && ./autogen.sh && ./configure && make && make install
-  - rm -rf mosh
+  - git clone https://github.com/keithw/mosh.git ~/mosh && cd ~/mosh && ./autogen.sh && ./configure && make && make install && rm -rf ~/mosh
+  # install btop
+  - apt-get install -y coreutils sed build-essential gcc-10 g++-10
+  - git clone --recursive https://github.com/aristocratos/btop.git ~/btop && cd ~/btop && make && PREFIX=/usr/local/bin make install && rm -rf ~/btop
+  # install ohmyzsh
   - su -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended' - vader
+  # install powerlevel10k
   - su -c 'git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k' - vader
   - su -c 'echo "source $HOME/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc' - vader
   - su -c "sed -i 's/ZSH_THEME\=.*/ZSH_THEME=\"powerlevel10k\/powerlevel10k\"/' ~/.zshrc" - vader
   - su -c 'sudo chsh -s $(which zsh) $(whoami)' - vader
   - su -c 'touch ~/.hushlogin' - vader
+  # install neofetch
   - su -c 'git clone https://github.com/dylanaraps/neofetch ~/neofetch' - vader
   - su -c 'cd ~/neofetch && sudo make install && rm -rf ~/neofetch' - vader
   - su -c 'wget https://raw.githubusercontent.com/oregonpillow/powerlevel10k/master/.p10k.zsh -O ~/.p10k.zsh' - vader 
@@ -42,11 +50,13 @@ runcmd:
   - su -c 'echo "\nneofetch --iterm2 --source ~/.neofetch_image.jpg" >> ~/.zshrc' - vader
   - su -c 'echo "\nLC_CTYPE=en_US.UTF-8" >> ~/.zshrc' - vader
   - su -c 'echo "LC_ALL=en_US.UTF-8" >> ~/.zshrc' - vader
+  # harden ssh
   - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
   - sed -i -E 's/#?PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
   - sed -i -E 's/#?Port 22/Port 14999/' /etc/ssh/sshd_config
-  - ufw allow 14999/tcp
-  - ufw allow 60000/udp
+  # firewall
+  - ufw allow 14999/tcp  #ssh
+  - ufw allow 60000/udp  #mosh
   - ufw enable
   - systemctl restart sshd
   - su -c 'echo "cloud-init complete - $(date)" >> ~/cloud-init.txt' - vader
