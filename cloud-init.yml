@@ -7,7 +7,7 @@ users:
     ssh_authorized_keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICixC3a5ECjM//PDxwZ70byGT1AOyk4cKKGhqkCBHm1p m93p
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPGSjUtdW0/2kgi9CY0/UILp67FohD/50s9KoFtYAsT magnapi
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBxv+NZ/P0pw3inXpqffaV5GB3FShqzZ8ovP6nHJ2I4 m1
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHr6cMWQ2CSHO+w9o/CLt8SrjTEOq5Cu2mFI2uRNSPzh vader@macbook-pro-1.home
 packages:
   - ufw
   - curl 
