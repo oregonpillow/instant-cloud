@@ -28,6 +28,7 @@ https://raw.githubusercontent.com/oregonpillow/powerlevel10k/master/cloud-init.y
 |OS            |Tested|
 |--------------|------|
 | Debian 11    |   ✓  |
+| Debian 12    |   x  |
 | Ubuntu 22.04 |   ✓  |
 
 
