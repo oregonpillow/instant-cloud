@@ -21,7 +21,16 @@ packages:
 package_update: true
 package_upgrade: true
 runcmd:
+  # firewall enable
+  - ufw enable
+  # set timezone
+  - su -c 'timedatectl set-timezone Europe/Zurich'
   - su -c 'echo "cloud-init start - $(date)" >> ~/cloud-init.txt' - vader
+  # harden ssh
+  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  - sed -i -E 's/#?PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+  - sed -i -E 's/#?Port 22/Port 14999/' /etc/ssh/sshd_config
+  - systemctl restart sshd
   # install docker
   - curl -fsSL https://get.docker.com | sh
   - usermod -aG docker vader
@@ -50,13 +59,7 @@ runcmd:
   - su -c 'echo "\nneofetch --iterm2 --source ~/.neofetch_image.jpg" >> ~/.zshrc' - vader
   - su -c 'echo "\nLC_CTYPE=en_US.UTF-8" >> ~/.zshrc' - vader
   - su -c 'echo "LC_ALL=en_US.UTF-8" >> ~/.zshrc' - vader
-  # harden ssh
-  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
-  - sed -i -E 's/#?PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-  - sed -i -E 's/#?Port 22/Port 14999/' /etc/ssh/sshd_config
-  # firewall
+  # add firewall rules - (allow SSH only on completion)
   - ufw allow 14999/tcp  #ssh
   - ufw allow 60000/udp  #mosh
-  - ufw enable
-  - systemctl restart sshd
   - su -c 'echo "cloud-init complete - $(date)" >> ~/cloud-init.txt' - vader
